@@ -10,7 +10,7 @@
 Name:           python-webob
 Summary:        WSGI request and response object
 Version:        1.2.3
-Release:        5%{?dist}
+Release:        6%{?dist}
 License:        MIT
 Group:          System Environment/Libraries
 URL:            http://pythonpaste.org/webob/
@@ -115,6 +115,9 @@ popd
 %endif
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.2.3-6
+- Mass rebuild 2013-12-27
+
 * Tue May  7 2013 Luke Macken <lmacken@redhat.com> - 1.2.3-5
 - Remove the python-wsgiproxy build requirement (#960463)
 
