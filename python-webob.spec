@@ -10,7 +10,7 @@
 Name:           python-webob
 Summary:        WSGI request and response object
 Version:        1.2.3
-Release:        6%{?dist}
+Release:        7%{?dist}
 License:        MIT
 Group:          System Environment/Libraries
 URL:            http://pythonpaste.org/webob/
@@ -20,6 +20,9 @@ Source1:        README.Fedora
 # https://github.com/Pylons/webob/issues/75
 # Fix build/test issue on python 3
 Patch1:         webob-1.2.3-test-headers2-fix.patch
+# Fix the generation of the hash of the message body, in fips mode
+# Resolves: https://bugzilla.redhat.com/show_bug.cgi?id=976661
+Patch2:			fix-fips-hash-generation.patch
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
@@ -66,6 +69,7 @@ cp -p %{SOURCE1} .
 %{__rm} -f tests/performance_test.py
 
 %patch1 -p1 -b .test_headers2
+%patch2 -p1
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -115,6 +119,10 @@ popd
 %endif
 
 %changelog
+* Wed Jan 25 2017 Charalampos Stratakis <cstratak@redhat.com> - 1.2.3-7
+- Fix hash generation of message body in fips mode
+Resolves: rhbz#976661
+
 * Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.2.3-6
 - Mass rebuild 2013-12-27
 

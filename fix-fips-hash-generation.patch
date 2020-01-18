@@ -1,0 +1,13 @@
+diff --git a/webob/response.py b/webob/response.py
+index af1f902..0b21d68 100644
+--- a/webob/response.py
++++ b/webob/response.py
+@@ -997,7 +997,7 @@ class Response(object):
+         """
+         if body is None:
+             body = self.body
+-        md5_digest = md5(body).digest()
++        md5_digest = md5(body, usedforsecurity=False).digest()
+         md5_digest = b64encode(md5_digest)
+         md5_digest = md5_digest.replace(b'\n', b'')
+         md5_digest = native_(md5_digest)
